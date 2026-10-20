@@ -1,0 +1,31 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Huellas Sanas{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'veterinaria/styles.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="{% url 'veterinaria:agenda' %}">Huellas <span>Sanas</span></a>
+        <nav aria-label="Navegación principal">
+            <a href="{% url 'veterinaria:agenda' %}">Agenda</a>
+            <a href="{% url 'veterinaria:nueva_mascota' %}">Registrar mascota</a>
+            <a href="{% url 'veterinaria:nueva_cita' %}">Nueva cita</a>
+            <a href="{% url 'admin:index' %}">Administración</a>
+        </nav>
+    </header>
+    <main class="page">
+        {% if messages %}
+            <div class="messages" role="status">
+                {% for message in messages %}
+                    <p class="message {{ message.tags }}">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
