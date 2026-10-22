@@ -72,6 +72,9 @@ class AgendaTests(TestCase):
         self.assertContains(response, "Control pendiente")
         self.assertContains(response, "Cita atendida")
         self.assertContains(response, "Cita cancelada")
+        self.assertContains(response, "19/10/2026")
+        self.assertContains(response, "21/10/2026")
+        self.assertContains(response, "22/10/2026")
         self.assertEqual(
             set(response.context["citas"]),
             {pendiente_pasada, *Cita.objects.exclude(pk=pendiente_pasada.pk)},

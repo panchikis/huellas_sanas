@@ -49,6 +49,7 @@
             <table>
                 <thead>
                     <tr>
+                        {% if todas_las_fechas %}<th>Fecha</th>{% endif %}
                         <th>Hora</th>
                         <th>Mascota</th>
                         <th>Dueño</th>
@@ -60,6 +61,7 @@
                 <tbody>
                     {% for cita in citas %}
                         <tr>
+                            {% if todas_las_fechas %}<td data-label="Fecha">{{ cita.fecha|date:"d/m/Y" }}</td>{% endif %}
                             <td data-label="Hora">{{ cita.hora|time:"H:i" }}</td>
                             <td data-label="Mascota"><strong>{{ cita.mascota.nombre }}</strong><span class="subtext">{{ cita.mascota.especie }} · {{ cita.mascota.raza }}</span></td>
                             <td data-label="Dueño">{{ cita.mascota.propietario }}</td>
@@ -68,7 +70,7 @@
                             <td data-label="Acciones"><a class="text-link" href="{% url 'veterinaria:editar_cita' cita.id %}">Editar</a></td>
                         </tr>
                     {% empty %}
-                        <tr><td class="empty-state" colspan="6">No hay citas para los filtros seleccionados.</td></tr>
+                        <tr><td class="empty-state" colspan="{% if todas_las_fechas %}7{% else %}6{% endif %}">No hay citas para los filtros seleccionados.</td></tr>
                     {% endfor %}
                 </tbody>
             </table>
