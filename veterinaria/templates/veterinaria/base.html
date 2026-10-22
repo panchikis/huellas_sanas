@@ -5,11 +5,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Huellas Sanas{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'veterinaria/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'veterinaria/styles.css' %}?v=2">
 </head>
 <body>
+    <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <symbol id="paw-mark" viewBox="0 0 64 64">
+            <ellipse cx="14" cy="17" rx="7" ry="9" transform="rotate(-28 14 17)" />
+            <ellipse cx="29" cy="10" rx="7" ry="9" />
+            <ellipse cx="45" cy="14" rx="7" ry="9" transform="rotate(24 45 14)" />
+            <ellipse cx="56" cy="27" rx="6" ry="8" transform="rotate(42 56 27)" />
+            <path d="M32 25c-8 0-12 8-17 14-5 6-8 11-5 17 3 5 10 5 17 2 5-2 9-2 14 0 8 3 15 2 17-4 2-5-2-11-7-16-5-6-10-13-19-13Z" />
+        </symbol>
+    </svg>
     <header class="site-header">
-        <a class="brand" href="{% url 'veterinaria:agenda' %}">Huellas <span>Sanas</span></a>
+        <a class="brand" href="{% url 'veterinaria:agenda' %}">
+            <svg class="brand-mark" aria-hidden="true"><use href="#paw-mark"></use></svg>
+            <span class="brand-copy">
+                <span class="brand-name">Huellas <span>Sanas</span></span>
+                <span class="brand-caption">Clínica veterinaria</span>
+            </span>
+        </a>
         <nav aria-label="Navegación principal">
             <a href="{% url 'veterinaria:agenda' %}">Agenda</a>
             <a href="{% url 'veterinaria:nueva_mascota' %}">Registrar mascota</a>
